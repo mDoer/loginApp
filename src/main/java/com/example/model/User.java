@@ -13,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.example.jsonview.Views;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -26,23 +28,33 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
     private int id;
+
     @Column(name = "email")
     @Email(message = "*Please provide a valid Email")
     @NotEmpty(message = "*Please provide an email")
+    @JsonView(Views.Public.class)
     private String email;
+
     @Column(name = "password")
     @Length(min = 5, message = "*Your password must have at least 5 characters")
     @NotEmpty(message = "*Please provide your password")
     @Transient
     private String password;
+
     @Column(name = "name")
     @NotEmpty(message = "*Please provide your name")
+    @JsonView(Views.Public.class)
     private String name;
+
     @Column(name = "last_name")
     @NotEmpty(message = "*Please provide your last name")
+    @JsonView(Views.Public.class)
     private String lastName;
+
     @Column(name = "active")
+    @JsonView(Views.Public.class)
     private int active;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
