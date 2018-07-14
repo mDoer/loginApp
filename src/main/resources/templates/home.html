@@ -1,110 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <th:block th:include="fragments/header :: head"></th:block>
 </head>
 <body>
-<div id="sidebar-menu" class="main_menu_side hidden-print main_menu" data-th-fragment="sidebar-menu">
-    <div class="menu_section">
-        <h3>General</h3>
-        <ul class="nav side-menu">
-            <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="#index.html">Dashboard</a></li>
-                    <li><a href="#index2.html">Dashboard2</a></li>
-                    <li><a href="#index3.html">Dashboard3</a></li>
-                </ul>
-            </li>
-            <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="#form.html">General Form</a></li>
-                    <li><a href="#form_advanced.html">Advanced Components</a></li>
-                    <li><a href="#form_validation.html">Form Validation</a></li>
-                    <li><a href="#form_wizards.html">Form Wizard</a></li>
-                    <li><a href="#form_upload.html">Form Upload</a></li>
-                    <li><a href="#form_buttons.html">Form Buttons</a></li>
-                </ul>
-            </li>
-            <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="#general_elements.html">General Elements</a></li>
-                    <li><a href="#media_gallery.html">Media Gallery</a></li>
-                    <li><a href="#typography.html">Typography</a></li>
-                    <li><a href="#icons.html">Icons</a></li>
-                    <li><a href="#glyphicons.html">Glyphicons</a></li>
-                    <li><a href="#widgets.html">Widgets</a></li>
-                    <li><a href="#invoice.html">Invoice</a></li>
-                    <li><a href="#inbox.html">Inbox</a></li>
-                    <li><a href="#calendar.html">Calendar</a></li>
-                </ul>
-            </li>
-            <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="#tables.html">Tables</a></li>
-                    <li><a href="#tables_dynamic.html">Table Dynamic</a></li>
-                </ul>
-            </li>
-            <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="#chartjs.html">Chart JS</a></li>
-                    <li><a href="#chartjs2.html">Chart JS2</a></li>
-                    <li><a href="#morisjs.html">Moris JS</a></li>
-                    <li><a href="#echarts.html">ECharts</a></li>
-                    <li><a href="#other_charts.html">Other Charts</a></li>
-                </ul>
-            </li>
-            <li><a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="#fixed_sidebar.html">Fixed Sidebar</a></li>
-                    <li><a href="#fixed_footer.html">Fixed Footer</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    <div class="menu_section">
-        <h3>Live On</h3>
-        <ul class="nav side-menu">
-            <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="#e_commerce.html">E-commerce</a></li>
-                    <li><a href="#projects.html">Projects</a></li>
-                    <li><a href="#project_detail.html">Project Detail</a></li>
-                    <li><a href="#contacts.html">Contacts</a></li>
-                    <li><a href="#profile.html">Profile</a></li>
-                </ul>
-            </li>
-            <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="#page_403.html">403 Error</a></li>
-                    <li><a href="#page_404.html">404 Error</a></li>
-                    <li><a href="#page_500.html">500 Error</a></li>
-                    <li><a data-th-href="@{/plain-page}">Plain Page</a></li>
-                    <li><a href="#login.html">Login Page</a></li>
-                    <li><a data-th-href="@{pricing-tables}">Pricing Tables</a></li>
-                </ul>
-            </li>
-            <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="#level1_1">Level One</a>
-                    <li><a>Level One<span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li class="sub_menu"><a href="#level2.html">Level Two</a>
-                            </li>
-                            <li><a href="#level2_1">Level Two</a>
-                            </li>
-                            <li><a href="#level2_2">Level Two</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href="#level1_2">Level One</a>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
-        </ul>
-    </div>
 
+
+<div class="nav-side-menu">
+    <div class="brand">Brand Logo</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+    <div class="menu-list">
+
+        <ul id="menu-content" class="menu-content collapse out">
+            <li>
+                <a href="#">
+                    <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                </a>
+            </li>
+
+            <li data-toggle="collapse" data-target="#products" class="collapsed active">
+                <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="products">
+                <li class="active"><a href="#">CSS3 Animation</a></li>
+                <li><a href="#">General</a></li>
+                <li><a href="#">Buttons</a></li>
+                <li><a href="#">Tabs & Accordions</a></li>
+                <li><a href="#">Typography</a></li>
+                <li><a href="#">FontAwesome</a></li>
+                <li><a href="#">Slider</a></li>
+                <li><a href="#">Panels</a></li>
+                <li><a href="#">Widgets</a></li>
+                <li><a href="#">Bootstrap Model</a></li>
+            </ul>
+
+
+            <li data-toggle="collapse" data-target="#service" class="collapsed">
+                <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="service">
+                <li>New Service 1</li>
+                <li>New Service 2</li>
+                <li>New Service 3</li>
+            </ul>
+
+
+            <li data-toggle="collapse" data-target="#new" class="collapsed">
+                <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="new">
+                <li>New New 1</li>
+                <li>New New 2</li>
+                <li>New New 3</li>
+            </ul>
+
+
+            <li>
+                <a href="#">
+                    <i class="fa fa-user fa-lg"></i> Profile
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="fa fa-users fa-lg"></i> Users
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>
+
 </body>
 </html>

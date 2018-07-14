@@ -4,7 +4,7 @@
 
 <head>
     <title>Spring Security Tutorial</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -12,25 +12,24 @@
 
 <body>
 
-<div class="container">
-    <form th:action="@{/login}" method="POST" class="form-signin">
-        <h3 class="form-signin-heading" th:text="Welcome"></h3>
-        <br/>
+<div class="wrapper">
+    <form class="form-signin" th:action="@{/login}" method="POST" >
+        <h2 class="form-signin-heading">Please login</h2>
 
-        <input type="text" id="email" name="email"  th:placeholder="Email"
-               class="form-control" /> <br/>
-        <input type="password"  th:placeholder="Password"
-               id="password" name="password" class="form-control" /> <br />
+        <input type="text" class="form-control" id="email" name="email" th:placeholder="Email" /><br/>
+
+        <input type="password" class="form-control"th:placeholder="Password" id="password" name="password"/><br/>
 
         <div align="center" th:if="${param.error}">
             <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
         </div>
-
-        <div class="container-login100-form-btn" >
-            <button class="login100-form-btn" name="Submit" value="Login" type="Submit" th:text="Login">
-            </button>
-        </div>
+        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login" >
+        </button>
     </form>
 </div>
+
 </body>
 </html>
+
+
+
