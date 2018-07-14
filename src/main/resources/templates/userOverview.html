@@ -11,8 +11,13 @@
 <body>
 <th:block th:include="fragments/header :: header"></th:block>
 
-<th:block th:include="fragments/navMenu :: navMenu"></th:block>
-
-
+<div id="wrapper">
+    <th:block th:include="fragments/navMenu :: navMenu"></th:block>
+    <div id="content" class="main-content-container">
+        <table id="example" class="display" width="100%">
+        </table>
+    </div>
+</div>
+</body>
 </body>
 </html>
