@@ -26,12 +26,25 @@ public class Privilege {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="role_id")
-    private Long id;
+    @Column(name="privilege_id")
+    private int id;
 
-    private String name;
+    @Column(name="privilege")
+    private String privilege;
 
-    @ManyToMany(mappedBy = "privileges")
-    private Collection<Role> roles;
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getPrivilege() {
+        return privilege;
+    }
+
+    public void setPrivilege(String privilege) {
+        this.privilege = privilege;
+    }
 }
