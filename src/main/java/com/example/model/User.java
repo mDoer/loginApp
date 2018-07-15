@@ -24,10 +24,10 @@ import org.springframework.data.annotation.Transient;
 @Table(name = "user")
 public class User {
 
+    @JsonView(Views.Public.class)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
-    @JsonView(Views.Public.class)
     private int id;
 
     @Column(name = "email")
@@ -61,6 +61,8 @@ public class User {
     private Set<Role> roles;
 
     @Column(name = "username")
+    @NotEmpty(message = "*Please provide a username")
+    @JsonView(Views.Public.class)
     private String username;
 
 
