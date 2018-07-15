@@ -1,5 +1,8 @@
 package com.example.model;
 
+import com.example.jsonview.Views;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -9,9 +12,11 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "role_id")
+    @JsonView(Views.Public.class)
     private int id;
 
     @Column(name = "role")
+    @JsonView(Views.Public.class)
     private String role;
 
     @ManyToMany(cascade = CascadeType.ALL)

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import java.util.List;
 
-public class AjaxUserResponseBody {
+public class UserAjaxResponseBody implements AjaxResponseBody<User>{
 
     @JsonView(Views.Public.class)
     private String msg;
