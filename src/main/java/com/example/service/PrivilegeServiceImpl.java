@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Privilege service.
+ */
 @Service
 public class PrivilegeServiceImpl implements PrivilegeService{
 

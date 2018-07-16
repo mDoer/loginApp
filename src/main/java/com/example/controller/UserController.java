@@ -14,12 +14,21 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.util.Optional;
 
+/**
+ * The type User controller.
+ */
 @Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
 
+    /**
+     * User list string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String userList(Model model) {
         model.addAttribute("users", userService.listAll());
@@ -27,6 +36,13 @@ public class UserController {
     }
 
 
+    /**
+     * User details model and view.
+     *
+     * @param id    the id
+     * @param model the model
+     * @return the model and view
+     */
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public ModelAndView userDetails(@PathVariable Integer id, ModelAndView model) {
         Optional<User> user = userService.findUserByID(id); //Fixme rename to optionakl
@@ -42,6 +58,11 @@ public class UserController {
     }
 
 
+    /**
+     * Registration model and view.
+     *
+     * @return the model and view
+     */
     @RequestMapping(value="/users/create", method = RequestMethod.GET)
     public ModelAndView registration(){
         ModelAndView modelAndView = new ModelAndView();
@@ -51,6 +72,13 @@ public class UserController {
         return modelAndView;
     }
 
+    /**
+     * Create new user model and view.
+     *
+     * @param user          the user
+     * @param bindingResult the binding result
+     * @return the model and view
+     */
     @RequestMapping(value = "/users/create", method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();

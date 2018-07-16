@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+/**
+ * The type User rest controller.
+ */
 @RestController
 public class UserRestController {
 
@@ -16,6 +19,11 @@ public class UserRestController {
     @Autowired
     private UserService userService;
 
+    /**
+     * Gets users via ajax.
+     *
+     * @return the users via ajax
+     */
     @JsonView(Views.Public.class)
     @RequestMapping(value = "/users/api/getusers", method = RequestMethod.GET)
     public UserAjaxResponseBody getUsersViaAjax() {

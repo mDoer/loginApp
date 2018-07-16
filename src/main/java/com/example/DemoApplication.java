@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
+/**
+ * The type Demo application.
+ */
 @SpringBootApplication
 public class DemoApplication  {
 
@@ -16,7 +19,12 @@ extends SpringBootServletInitializer
 		return application.sources(DemoApplication.class);
 	}*/
 
-	public static void main(String[] args) {
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
+    public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 }

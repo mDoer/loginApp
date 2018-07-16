@@ -8,6 +8,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
+/**
+ * The type Privilege repository.
+ */
 @Repository
 public class PrivilegeRepositoryImpl implements PrivilegeRepositoryInterface {
 

@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import java.util.List;
 
+/**
+ * The type Role ajax response body.
+ */
 public class RoleAjaxResponseBody implements AjaxResponseBody<Role> {
     @JsonView(Views.Public.class)
     private String msg;

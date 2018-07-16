@@ -20,6 +20,9 @@ import org.springframework.data.annotation.Transient;
 
 import java.util.Collection;
 
+/**
+ * The type Privilege.
+ */
 @Entity
 @Table(name = "privilege")
 public class Privilege {
@@ -34,18 +37,38 @@ public class Privilege {
     @JsonView(Views.Public.class)
     private String privilege;
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Gets privilege.
+     *
+     * @return the privilege
+     */
     public String getPrivilege() {
         return privilege;
     }
 
+    /**
+     * Sets privilege.
+     *
+     * @param privilege the privilege
+     */
     public void setPrivilege(String privilege) {
         this.privilege = privilege;
     }

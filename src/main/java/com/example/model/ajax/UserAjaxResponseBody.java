@@ -8,6 +8,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import java.util.List;
 
+/**
+ * The type User ajax response body.
+ */
 public class UserAjaxResponseBody implements AjaxResponseBody<User> {
 
     @JsonView(Views.Public.class)

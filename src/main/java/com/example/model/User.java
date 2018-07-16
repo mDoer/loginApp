@@ -20,6 +20,9 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Transient;
 
+/**
+ * The type User.
+ */
 @Entity
 @Table(name = "user")
 public class User {
@@ -66,66 +69,146 @@ public class User {
     private String username;
 
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Gets password.
+     *
+     * @return the password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Sets password.
+     *
+     * @param password the password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets name.
+     *
+     * @param name the name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Gets last name.
+     *
+     * @return the last name
+     */
     public String getLastName() {
         return lastName;
     }
 
+    /**
+     * Sets last name.
+     *
+     * @param lastName the last name
+     */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    /**
+     * Gets email.
+     *
+     * @return the email
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Sets email.
+     *
+     * @param email the email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     * Gets active.
+     *
+     * @return the active
+     */
     public int getActive() {
         return active;
     }
 
+    /**
+     * Sets active.
+     *
+     * @param active the active
+     */
     public void setActive(int active) {
         this.active = active;
     }
 
+    /**
+     * Gets roles.
+     *
+     * @return the roles
+     */
     public Set<Role> getRoles() {
         return roles;
     }
 
+    /**
+     * Sets roles.
+     *
+     * @param roles the roles
+     */
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
+    /**
+     * Gets username.
+     *
+     * @return the username
+     */
     public String getUsername() {
         return this.username;
     }
 
+    /**
+     * Sets username.
+     *
+     * @param username the username
+     */
     public void setUsername(String username) {
         this.username = username;
     }

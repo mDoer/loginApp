@@ -8,6 +8,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import java.util.List;
 
+/**
+ * The type Role privilege response body.
+ */
 public class RolePrivilegeResponseBody implements AjaxResponseBody<RolePrivilege> {
 
 

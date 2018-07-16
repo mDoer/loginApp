@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+/**
+ * The type Role service.
+ */
 @Service("roleService")
 public class RoleServiceImpl implements RoleService {
 

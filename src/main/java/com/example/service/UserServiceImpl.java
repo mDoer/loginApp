@@ -11,6 +11,9 @@ import com.example.model.User;
 import com.example.repo.RoleRepository;
 import com.example.repo.UserRepository;
 
+/**
+ * The type User service.
+ */
 @Service("userService")
 public class UserServiceImpl implements UserService {
 

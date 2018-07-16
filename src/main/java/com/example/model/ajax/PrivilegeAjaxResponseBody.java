@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import java.util.List;
 
+/**
+ * The type Privilege ajax response body.
+ */
 public class PrivilegeAjaxResponseBody implements AjaxResponseBody<Privilege> {
     @JsonView(Views.Public.class)
     private String msg;

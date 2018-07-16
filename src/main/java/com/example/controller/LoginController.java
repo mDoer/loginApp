@@ -14,12 +14,20 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.model.User;
 import com.example.service.UserService;
 
+/**
+ * The type Login controller.
+ */
 @Controller
 public class LoginController {
 
     @Autowired
     private UserService userService;
 
+    /**
+     * Login model and view.
+     *
+     * @return the model and view
+     */
     @RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
     public ModelAndView login(){
         ModelAndView modelAndView = new ModelAndView();
@@ -28,6 +36,11 @@ public class LoginController {
     }
 
 
+    /**
+     * Home admin model and view.
+     *
+     * @return the model and view
+     */
     @RequestMapping(value="/admin/home", method = RequestMethod.GET)
     public ModelAndView homeAdmin(){
         ModelAndView modelAndView = new ModelAndView();
@@ -39,6 +52,11 @@ public class LoginController {
         return modelAndView;
     }
 
+    /**
+     * Home model and view.
+     *
+     * @return the model and view
+     */
     @RequestMapping(value="/home",method=RequestMethod.GET)
     public ModelAndView home(){
         ModelAndView modelAndView = new ModelAndView();

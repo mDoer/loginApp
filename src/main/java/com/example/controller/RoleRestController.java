@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * The type Role rest controller.
+ */
 @RestController
 public class RoleRestController {
 
@@ -23,6 +26,11 @@ public class RoleRestController {
     @Autowired
     private PrivilegeService privilegeService;
 
+    /**
+     * Gets roles via ajax.
+     *
+     * @return the roles via ajax
+     */
     @JsonView(Views.Public.class)
     @RequestMapping(value = "/roles/api/getroles", method = RequestMethod.GET)
     public AjaxResponseBody<Role> getRolesViaAjax() {
@@ -33,6 +41,11 @@ public class RoleRestController {
     }
 
 
+    /**
+     * Gets privileges via ajax.
+     *
+     * @return the privileges via ajax
+     */
     @JsonView(Views.Public.class)
     @RequestMapping(value = "/roles/api/privileges", method = RequestMethod.GET)
     public AjaxResponseBody<Privilege> getPrivilegesViaAjax() {
@@ -44,9 +57,13 @@ public class RoleRestController {
     }
 
 
-
-
-    //todo maybe do via sql?
+    /**
+     * Gets role privilege mapping via ajax.
+     *
+     * @param id the id
+     * @return the role privilege mapping via ajax
+     */
+//todo maybe do via sql?
     @JsonView(Views.Public.class)
     @RequestMapping(value = "/roles/api/roleprivilegemapping", method = RequestMethod.GET)
     public AjaxResponseBody<RolePrivilege> getRolePrivilegeMappingViaAjax(@RequestParam("id") int id) {
