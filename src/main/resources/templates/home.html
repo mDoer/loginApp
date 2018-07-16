@@ -5,13 +5,22 @@
 
     <th:block th:include="fragments/head :: head"></th:block>
 
-    <script type="text/javascript" th:src="@{/js/table.js}"></script>
+    <script type="text/javascript" th:src="@{/js/rolePrivilegeTable.js}"></script>
+
+    <script src="//cdn.datatables.net/plug-ins/1.10.19/sorting/custom-data-source/dom-checkbox.js" th:src="@{https://cdn.datatables.net/plug-ins/1.10.19/sorting/custom-data-source/dom-checkbox.js}" type="text/javascript"></script>
+    <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/js/dataTables.checkboxes.min.js" th:src="@{https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/js/dataTables.checkboxes.min.js}"></script>
 
 </head>
 <body>
 <th:block th:include="fragments/header :: header"></th:block>
 
 <th:block th:include="fragments/navMenu :: navMenu"></th:block>
+<div>
+    <table id="example" class="display" width="100%">
+    </table>
+</div>
+
+
 
 
 </body>

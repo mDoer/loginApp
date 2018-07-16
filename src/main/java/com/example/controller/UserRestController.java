@@ -2,7 +2,7 @@ package com.example.controller;
 
 
 import com.example.jsonview.Views;
-import com.example.model.UserAjaxResponseBody;
+import com.example.model.ajax.UserAjaxResponseBody;
 import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,15 +1,17 @@
-package com.example.model;
+package com.example.model.ajax;
 
 import com.example.jsonview.Views;
+import com.example.model.Privilege;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import java.util.List;
 
-public class RoleAjaxResponseBody implements AjaxResponseBody<Role>{
+public class PrivilegeAjaxResponseBody implements AjaxResponseBody<Privilege> {
     @JsonView(Views.Public.class)
     private String msg;
     @JsonView(Views.Public.class)
-    private List<Role> result;
+    private List<Privilege> result;
+
 
     public String getMsg() {
         return msg;
@@ -19,11 +21,11 @@ public class RoleAjaxResponseBody implements AjaxResponseBody<Role>{
         this.msg = msg;
     }
 
-    public List<Role> getResult() {
+    public List<Privilege> getResult() {
         return result;
     }
 
-    public void setResult(List<Role> result) {
+    public void setResult(List<Privilege> result) {
         this.result = result;
     }
 }

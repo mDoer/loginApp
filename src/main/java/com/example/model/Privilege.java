@@ -27,9 +27,11 @@ public class Privilege {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="privilege_id")
+    @JsonView(Views.Public.class)
     private int id;
 
     @Column(name="privilege")
+    @JsonView(Views.Public.class)
     private String privilege;
 
     public int getId() {

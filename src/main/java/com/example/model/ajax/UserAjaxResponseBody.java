@@ -1,12 +1,14 @@
-package com.example.model;
+package com.example.model.ajax;
 
 
 import com.example.jsonview.Views;
+import com.example.model.User;
+import com.example.model.ajax.AjaxResponseBody;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import java.util.List;
 
-public class UserAjaxResponseBody implements AjaxResponseBody<User>{
+public class UserAjaxResponseBody implements AjaxResponseBody<User> {
 
     @JsonView(Views.Public.class)
     private String msg;
