@@ -11,20 +11,15 @@ import java.util.Optional;
 /**
  * The type Privilege service.
  */
-@Service
+@Service ("privilegeService")
 public class PrivilegeServiceImpl implements PrivilegeService{
 
     @Autowired
     private PrivilegeRepository privilegeRepository;
 
     @Override
-    public List<Privilege> listAll() {
-        return privilegeRepository.getAll();
-    }
-
-    @Override
-    public Optional<Privilege> findRoleByID(Integer id) {
-        return Optional.empty();
+    public List<Privilege> findAll() {
+        return privilegeRepository.findAll();
     }
 
     @Override

@@ -50,8 +50,8 @@ public class RoleRestController {
     @RequestMapping(value = "/roles/api/privileges", method = RequestMethod.GET)
     public AjaxResponseBody<Privilege> getPrivilegesViaAjax() {
         AjaxResponseBody<Privilege> result = new PrivilegeAjaxResponseBody();
-        result.setResult(privilegeService.listAll());
-        System.out.println(privilegeService.listAll().size());
+        result.setResult(privilegeService.findAll());
+        System.out.println(privilegeService.findAll().size());
         result.setMsg("");
         return result;
     }
@@ -82,7 +82,7 @@ public class RoleRestController {
             return result;
         }
 
-        privilegeList = privilegeService.listAll();
+        privilegeList = privilegeService.findAll();
         rolePrivilegeList = RoleRestHelper.mapRolePrivileges(role,privilegeList);
 
         result.setResult(rolePrivilegeList);

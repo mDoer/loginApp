@@ -16,15 +16,8 @@ public interface PrivilegeService {
      *
      * @return the list
      */
-    public List<Privilege> listAll();
+    public List<Privilege> findAll();
 
-    /**
-     * Find role by id optional.
-     *
-     * @param id the id
-     * @return the optional
-     */
-    public Optional<Privilege> findRoleByID(Integer id);
 
     /**
      * Save privilege.
