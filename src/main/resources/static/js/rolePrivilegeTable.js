@@ -1,5 +1,7 @@
 
 $(document).ready(function (){
+
+
    var table = $('#example').DataTable({
 
       "ajax":{
@@ -20,47 +22,50 @@ $(document).ready(function (){
                           'createdCell':  function (td, cellData, rowData, row, col){
                                 if(rowData.isGranted === true){
                                  this.api().cell(td).checkboxes.select();
-                                console.log(JSON.stringify(rowData.data));
-                                 console.log(JSON.stringify(table.rows().data));
-
                               }
-                          }
+                          },
                        }
                     ],
                'select': {'style': 'multi'},
                'order': [[1, 'asc']],
+               "initComplete": function () {
 
-
-                            "initComplete": function () {
-                                        $( document ).on("click", "tr[role='row']", function(){
-                                             var row = $(this).closest('tr');
-                                                     var data = $('#example').dataTable().fnGetData();
-                                                     console.log(JSON.stringify(data));
-
-
-
-                                        });
-                                    }
+                  //    $( document ).on("click", "tr[role='row']", function(){
+                  //          var row = $(this).closest('tr');
+                  //          var data = $('#example').dataTable().fnGetData();
+                  //      });
+               }
 
    });
 
 
-console.log(table.rows('selected').data);
-   // Handle form submission event
-   $('#frm-example').on('submit', function(e){
+
+
+
+     $('#save_table').on('click', function(e){
       var form = this;
 
-      var rows_selected = table.column(0).checkboxes.selected();
+      var tableData = $('#example').dataTable().fnGetData()
 
+      var rows_selected = table.column(0).checkboxes.selected();
       // Iterate over all selected checkboxes
+
+      var fndata = $('#example').dataTable().fnGetData();
+      console.log(fndata);
+
+
       $.each(rows_selected, function(index, rowId){
-         // Create a hidden element
-         $(form).append(
-             $('<input>')
-                .attr('type', 'hidden')
-                .attr('name', 'id[]')
-                .val(rowId)
-         );
+            var id = table.row( this ).id();
+            console.log(rowId);
+            console.log(index);
+
+            var rowData = $.grep(tableData, function(obj){return obj.id === rowId;})[0];
+
+            // set granted value if checked
+         //    data.isGranted = true;
+             console.log(rowData.isGranted);
+          //   $(form).append($('<input>').attr('type', 'hidden').attr('name', 'roleprivilege[]').val(JSON.stringify(data)));
+
       });
    });
 });
