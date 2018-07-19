@@ -46,12 +46,11 @@ public class UserController {
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public ModelAndView userDetails(@PathVariable Integer id, ModelAndView model) {
         Optional<User> user = userService.findUserByID(id); //Fixme rename to optionakl
-        if(user.isPresent()) {
+        if (user.isPresent()) {
             model.addObject("user", user.get());
             model.setViewName("userdetail");
             return model;
-        }
-        else{
+        } else {
             throw new IllegalStateException(); //FIXME nasty quick fix
 
         }
@@ -63,8 +62,8 @@ public class UserController {
      *
      * @return the model and view
      */
-    @RequestMapping(value="/users/create", method = RequestMethod.GET)
-    public ModelAndView registration(){
+    @RequestMapping(value = "/users/create", method = RequestMethod.GET)
+    public ModelAndView registration() {
         ModelAndView modelAndView = new ModelAndView();
         User user = new User();
         modelAndView.addObject("user", user);
@@ -93,24 +92,16 @@ public class UserController {
         } else {
             try {
                 userService.saveUser(user);
-            }catch(Exception e){
+            } catch (Exception e) {
                 modelAndView.setViewName("redirect:/error");    //FIXME Log some shit
                 return modelAndView;
             }
             modelAndView.addObject("successMessage", "User has been created successfully");
-            modelAndView.addObject("user", new User());
+            //modelAndView.addObject("user", new User());
             modelAndView.setViewName("redirect:/users");
         }
         return modelAndView;
     }
-
-
-
-
-
-
-
-
 
 
 }

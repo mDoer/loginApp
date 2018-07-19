@@ -1,6 +1,7 @@
 
 $(document).ready(function (){
 
+    var rolePermissions=[];
 
    var table = $('#example').DataTable({
 
@@ -20,6 +21,9 @@ $(document).ready(function (){
                           'targets': 0,
                           'checkboxes': {'selectRow': true},
                           'createdCell':  function (td, cellData, rowData, row, col){
+
+                                rolePermissions.push(rowData);
+
                                 if(rowData.isGranted === true){
                                  this.api().cell(td).checkboxes.select();
                               }
@@ -30,44 +34,41 @@ $(document).ready(function (){
                'order': [[1, 'asc']],
                "initComplete": function () {
 
-                  //    $( document ).on("click", "tr[role='row']", function(){
-                  //          var row = $(this).closest('tr');
-                  //          var data = $('#example').dataTable().fnGetData();
-                  //      });
                }
 
    });
 
 
-
-
-
      $('#save_table').on('click', function(e){
       var form = this;
-
       var tableData = $('#example').dataTable().fnGetData()
-
       var rows_selected = table.column(0).checkboxes.selected();
-      // Iterate over all selected checkboxes
-
       var fndata = $('#example').dataTable().fnGetData();
-      console.log(fndata);
+
+       rolePermissions.forEach(function(element) {
+          element.isGranted=false;
+        });
 
 
       $.each(rows_selected, function(index, rowId){
-            var id = table.row( this ).id();
-            console.log(rowId);
-            console.log(index);
-
+          //  var id = table.row( this ).id();
             var rowData = $.grep(tableData, function(obj){return obj.id === rowId;})[0];
-
-            // set granted value if checked
-         //    data.isGranted = true;
-             console.log(rowData.isGranted);
-          //   $(form).append($('<input>').attr('type', 'hidden').attr('name', 'roleprivilege[]').val(JSON.stringify(data)));
-
+            rowData.isGranted=true;
+            console.log(JSON.stringify(rowData));
       });
+                  $.ajax({
+                  			type : "POST",
+                  			contentType : "application/json",
+                  			url : "/roles/api/roleprivilegemapping",
+                  			data : JSON.stringify(rolePermissions),
+                  			dataType : 'json',
+                  			success : function(result) {
+
+                  			},
+                  			error : function(e) {
+                  				alert("Error!")
+                  				console.log("ERROR: ", e);
+                  			}
+                  		});
    });
 });
-
-

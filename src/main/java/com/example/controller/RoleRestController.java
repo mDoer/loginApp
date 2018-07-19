@@ -10,7 +10,10 @@ import com.example.service.PrivilegeService;
 import com.example.service.RoleService;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -65,7 +68,7 @@ public class RoleRestController {
      */
 //todo maybe do via sql?
     @JsonView(Views.Public.class)
-    @RequestMapping(value = "/roles/api/roleprivilegemapping", method = RequestMethod.GET)
+    @RequestMapping(value = "/roles/api/roleprivilegemapping", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public AjaxResponseBody<RolePrivilege> getRolePrivilegeMappingViaAjax(@RequestParam("id") int id) {
         AjaxResponseBody<RolePrivilege> result = new RolePrivilegeResponseBody();
         Role role;
@@ -73,23 +76,34 @@ public class RoleRestController {
         List<RolePrivilege> rolePrivilegeList;
 
 
-        System.out.println(id);
-
-        try{
+        try {
             role = roleService.findRoleByID(id).get();   //fixme check if present
-        }catch (Exception e){
+        } catch (Exception e) {
             result.setMsg("unknown role id");   //FIXME Log some shit
             return result;
         }
 
         privilegeList = privilegeService.findAll();
-        rolePrivilegeList = RoleRestHelper.mapRolePrivileges(role,privilegeList);
+        rolePrivilegeList = RoleRestHelper.mapRolePrivileges(role, privilegeList);
 
         result.setResult(rolePrivilegeList);
 
         result.setMsg("");
         return result;
     }
+
+
+    @JsonView(Views.Public.class)
+    @RequestMapping(value = "/roles/api/roleprivilegemapping", method = RequestMethod.POST)
+    public ModelAndView updateRolesPrivilegesMapping(@RequestBody List<RolePrivilege> rolePrivilegeList) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.addObject("successMessage", "Updated roles and permissions");
+        modelAndView.setViewName("redirect:/roles");
+
+        return modelAndView;
+    }
+
 
 
 

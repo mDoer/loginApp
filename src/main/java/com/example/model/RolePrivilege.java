@@ -20,8 +20,11 @@ public class RolePrivilege {
     private boolean isGranted;
 
     @JsonView(Views.Public.class)
-    private final int id;
+    private  int id;
 
+
+    public RolePrivilege() {
+    }
 
     /**
      * Instantiates a new Role privilege.
