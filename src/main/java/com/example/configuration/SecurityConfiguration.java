@@ -60,11 +60,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.
                 authorizeRequests()
-                .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/registration").permitAll() //FIXME  remove before deploy
-                .antMatchers("/home").hasAuthority("SUPERADMIN").anyRequest()
-                .authenticated().and().csrf().disable().formLogin()
+                .antMatchers("/users/create").permitAll() //FIXME  remove before deploy
+                .antMatchers("/home").hasAuthority("SUPERADMIN")
+                .antMatchers("/users*").hasAuthority("SUPERADMIN")
+                .antMatchers("/roles*").hasAuthority("SUPERADMIN")
+                .antMatchers("/users/api/*").hasAuthority("SUPERADMIN")
+                .anyRequest()
+                .denyAll().and().csrf().disable().formLogin()
                 .loginPage("/login").failureUrl("/login?error=true")
                 .defaultSuccessUrl("/home",true)
                 .usernameParameter("email")
