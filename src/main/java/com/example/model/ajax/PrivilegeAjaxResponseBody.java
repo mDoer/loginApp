@@ -1,7 +1,7 @@
 package com.example.model.ajax;
 
 import com.example.jsonview.Views;
-import com.example.model.Privilege;
+import com.example.security.model.Privilege;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import java.util.List;

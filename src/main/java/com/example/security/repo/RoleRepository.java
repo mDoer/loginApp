@@ -1,9 +1,9 @@
-package com.example.repo;
+package com.example.security.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.model.Role;
+import com.example.security.model.Role;
 
 /**
  * The interface Role repository.

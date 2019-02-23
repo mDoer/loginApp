@@ -1,9 +1,7 @@
 package com.example.service;
 
-import com.example.model.Role;
-import com.example.model.User;
-import com.example.repo.RoleRepository;
-import com.example.repo.UserRepository;
+import com.example.security.model.Role;
+import com.example.security.repo.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.example.controller;
 
-import com.example.model.Privilege;
-import com.example.model.Role;
+import com.example.security.model.Privilege;
+import com.example.security.model.Role;
 import com.example.model.RolePrivilege;
 
 import java.util.ArrayList;

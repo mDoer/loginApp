@@ -1,17 +1,18 @@
 package com.example.controller;
 
 import com.example.jsonview.Views;
-import com.example.model.*;
 import com.example.model.ajax.AjaxResponseBody;
 import com.example.model.ajax.PrivilegeAjaxResponseBody;
 import com.example.model.ajax.RoleAjaxResponseBody;
 import com.example.model.ajax.RolePrivilegeResponseBody;
+import com.example.security.model.Privilege;
+import com.example.security.model.Role;
+import com.example.model.RolePrivilege;
 import com.example.service.PrivilegeService;
 import com.example.service.RoleService;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 

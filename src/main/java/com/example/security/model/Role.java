@@ -1,4 +1,4 @@
-package com.example.model;
+package com.example.security.model;
 
 import com.example.jsonview.Views;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -13,8 +13,8 @@ import java.util.Collection;
 @Table(name = "role")
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "role_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     @JsonView(Views.Public.class)
     private int id;
 
@@ -22,8 +22,8 @@ public class Role {
     @JsonView(Views.Public.class)
     private String role;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "roles_privileges", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "privilege_id"))
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "roles_privileges", joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "id"))
     private Collection<Privilege> privileges;
 
 

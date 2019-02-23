@@ -6,6 +6,7 @@
 DROP TABLE IF EXISTS `privilege`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `role` (
   `privilege_id` int(11) NOT NULL AUTO_INCREMENT,
   `privilege` varchar(255) DEFAULT NULL,

@@ -1,10 +1,8 @@
 package com.example.service;
 
-import com.example.model.Privilege;
-import com.example.model.Role;
+import com.example.security.model.Privilege;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * The interface Privilege service.

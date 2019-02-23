@@ -1,6 +1,6 @@
-package com.example.repo;
+package com.example.security.repo;
 
-import com.example.model.Privilege;
+import com.example.security.model.Privilege;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

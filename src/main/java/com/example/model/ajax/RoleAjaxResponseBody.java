@@ -1,8 +1,7 @@
 package com.example.model.ajax;
 
 import com.example.jsonview.Views;
-import com.example.model.Role;
-import com.example.model.ajax.AjaxResponseBody;
+import com.example.security.model.Role;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import java.util.List;

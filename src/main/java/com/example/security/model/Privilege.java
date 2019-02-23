@@ -1,4 +1,4 @@
-package com.example.model;
+package com.example.security.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -29,13 +29,14 @@ public class Privilege {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="privilege_id")
+    @Column(name="id")
     @JsonView(Views.Public.class)
     private int id;
 
     @Column(name="privilege")
     @JsonView(Views.Public.class)
     private String privilege;
+
 
     /**
      * Gets id.

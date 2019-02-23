@@ -1,8 +1,9 @@
 package com.example.controller;
 
-import com.example.model.User;
+import com.example.security.model.User;
 import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 /**
  * The type User controller.
@@ -45,15 +45,11 @@ public class UserController {
      */
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public ModelAndView userDetails(@PathVariable Integer id, ModelAndView model) {
-        Optional<User> user = userService.findUserByID(id); //Fixme rename to optionakl
-        if (user.isPresent()) {
-            model.addObject("user", user.get());
-            model.setViewName("userdetail");
-            return model;
-        } else {
-            throw new IllegalStateException(); //FIXME nasty quick fix
+        UserDetails user = userService.loadUserByID(id);
 
-        }
+        model.addObject("user", user);
+        model.setViewName("userdetail");
+        return model;
     }
 
 
@@ -81,7 +77,7 @@ public class UserController {
     @RequestMapping(value = "/users/create", method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
-        User userExists = userService.findByUsername(user.getUsername());
+        UserDetails userExists = userService.loadUserByUsername(user.getUsername());
         if (userExists != null) {
             bindingResult
                     .rejectValue("username", "error.user",

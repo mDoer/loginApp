@@ -2,6 +2,8 @@ package com.example.model;
 
 
 import com.example.jsonview.Views;
+import com.example.security.model.Privilege;
+import com.example.security.model.Role;
 import com.fasterxml.jackson.annotation.JsonView;
 
 /**

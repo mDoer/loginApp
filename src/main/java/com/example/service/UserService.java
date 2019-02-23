@@ -1,9 +1,9 @@
 package com.example.service;
 
-import com.example.model.User;
+import com.example.security.model.User;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * The interface User service.
@@ -15,7 +15,7 @@ public interface UserService {
      * @param email the email
      * @return the user
      */
-    public User findUserByEmail(String email);
+    public UserDetails loadUserByEmail(String email);
 
     /**
      * Find user by id optional.
@@ -23,15 +23,11 @@ public interface UserService {
      * @param id the id
      * @return the optional
      */
-    public Optional<User> findUserByID(Integer id);
+    public UserDetails loadUserByID(Integer id);
 
-    /**
-     * Find by username user.
-     *
-     * @param username the username
-     * @return the user
-     */
-    User findByUsername(String username);
+
+    public UserDetails loadUserByUsername(String username);
+
 
     /**
      * Save user.
@@ -46,4 +42,5 @@ public interface UserService {
      * @return the list
      */
     public List<User> listAll();
+
 }
