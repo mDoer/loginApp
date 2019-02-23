@@ -7,6 +7,7 @@ import com.example.security.repo.PrivilegeRepository;
 import com.example.security.repo.RoleRepository;
 import com.example.security.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -23,6 +24,9 @@ public class SetupData {
 
     @Autowired
     private PrivilegeRepository privilegeRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostConstruct
 
@@ -61,7 +65,7 @@ public class SetupData {
 
         superadmin.setRoles(new HashSet<Role>(Collections.singletonList(roleRepository.findByRole("Superadmin"))));
         superadmin.setUsername("superadmin");
-        superadmin.setPassword("passlogsol");
+        superadmin.setPassword(bCryptPasswordEncoder.encode("passlogsol"));
         userRepository.save(superadmin);
 
     }

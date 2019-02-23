@@ -55,7 +55,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 authorizeRequests()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/users/create").permitAll() //FIXME  remove before deploy
-                .antMatchers("/home").hasAuthority("SUPERADMIN")
+                //.antMatchers("/home").hasAuthority("USERS_EDIT_PRIVILEGE")
+                .antMatchers("/home").permitAll()
                 .antMatchers("/users*").hasAuthority("SUPERADMIN")
                 .antMatchers("/roles*").hasAuthority("SUPERADMIN")
                 .antMatchers("/users/api/*").hasAuthority("SUPERADMIN")

@@ -5,8 +5,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class CustomPermissionEvaluator implements PermissionEvaluator {
+
+
     @Override
     public boolean hasPermission(Authentication auth, Object targetDomainObject, Object permission) {
         if ((auth == null) || (targetDomainObject == null) || !(permission instanceof String)) {
@@ -27,14 +30,24 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
     }
 
 
-    private boolean hasPrivilege(Authentication auth, String targetType, String permission) {
+    private boolean hasPrivilege(Authentication auth, String permission) {
         for (GrantedAuthority grantedAuth : auth.getAuthorities()) {
-            if (grantedAuth.getAuthority().startsWith(targetType)) {
                 if (grantedAuth.getAuthority().contains(permission)) {
                     return true;
                 }
-            }
         }
+        return false;
+    }
+
+
+    private boolean hasPrivilege(Authentication auth, String targetType, String permission) {
+        for (GrantedAuthority grantedAuth : auth.getAuthorities()) {
+   //         if (grantedAuth.getAuthority().startsWith(targetType)) {
+                if (Objects.equals(grantedAuth.getAuthority(),permission)) {
+                    return true;
+                }
+            }
+   ///     }
         return false;
     }
 }
