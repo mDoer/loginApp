@@ -62,6 +62,7 @@ public class SetupData {
         superadmin.setActive(1);
         superadmin.setLastName("admin");
         superadmin.setName("super");
+        superadmin.setIsSuperAdmin(1);
 
         superadmin.setRoles(new HashSet<Role>(Collections.singletonList(roleRepository.findByRole("Superadmin"))));
         superadmin.setUsername("superadmin");

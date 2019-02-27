@@ -1,8 +1,8 @@
 package com.example.controller;
 
+import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PostAuthorize;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.example.service.UserService;
 
 /**
  * The type Login controller.
@@ -46,7 +44,6 @@ public class LoginController {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDetails user = userService.loadUserByEmail(auth.getName());
-        modelAndView.addObject("userName", "Welcome " + user.getUsername() + " " + user.getUsername() + " (" + user.getUsername() + ")"); // fix user details to be more providing
         modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
         modelAndView.setViewName("admin/home");
         return modelAndView;
@@ -68,7 +65,7 @@ public class LoginController {
         UserDetails user = userService.loadUserByEmail(auth.getName());
         modelAndView.addObject("userName", "Welcome " + user.getUsername() + " " + user.getUsername() + " (" + user.getUsername() + ")");
         modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
-        modelAndView.setViewName("/home");
+        modelAndView.setViewName("/index");
         return modelAndView;
     }
 

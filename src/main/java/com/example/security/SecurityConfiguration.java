@@ -55,11 +55,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 authorizeRequests()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/users/create").permitAll() //FIXME  remove before deploy
-                //.antMatchers("/home").hasAuthority("USERS_EDIT_PRIVILEGE")
+                .antMatchers( "/js/**", "/css/**", "/vendor/**").permitAll()
                 .antMatchers("/home").permitAll()
-                .antMatchers("/users*").hasAuthority("SUPERADMIN")
-                .antMatchers("/roles*").hasAuthority("SUPERADMIN")
-                .antMatchers("/users/api/*").hasAuthority("SUPERADMIN")
                 .anyRequest()
                 .denyAll().and().csrf().disable().formLogin()
                 .loginPage("/login").failureUrl("/login?error=true")

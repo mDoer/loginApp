@@ -3,12 +3,13 @@ package com.example.security.model;
 import java.util.Set;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 import com.example.jsonview.Views;
 import com.fasterxml.jackson.annotation.JsonView;
-import org.hibernate.validator.constraints.Email;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Transient;
 
 /**
@@ -54,13 +55,16 @@ public class User {
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id",
                     referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "id"))
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Set<Role> roles;
 
     @Column(name = "username")
     @NotEmpty(message = "*Please provide a username")
     @JsonView(Views.Public.class)
     private String username;
+
+    @Column(name = "isSuperAdmin", columnDefinition = "int default 0")
+    private int isSuperAdmin;
 
 
     /**
@@ -205,5 +209,13 @@ public class User {
      */
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public int getIsSuperAdmin() {
+        return isSuperAdmin;
+    }
+
+    public void setIsSuperAdmin(int isSuperAdmin) {
+        this.isSuperAdmin = isSuperAdmin;
     }
 }
