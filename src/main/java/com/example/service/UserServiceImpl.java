@@ -20,7 +20,7 @@ import javax.persistence.EntityNotFoundException;
 /**
  * The type User service.
  */
-@Service("userService")
+@Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public UserDetails loadUserByEmail(String email) {
+    public CustomUserPrincipal loadUserByEmail(String email) {
         User user = userRepository.findByEmail(email);
         if (user == null) {
             throw new UsernameNotFoundException(email);
@@ -40,15 +40,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByID(Integer id) {
+    public CustomUserPrincipal loadUserByID(Integer id) {
         User user = userRepository.findById(id).orElseThrow(EntityNotFoundException::new); // FIXME enhance exception message
         return new CustomUserPrincipal(user);
     }
 
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+    public CustomUserPrincipal loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username); //FIXME Catch exceptions when multiple times same username
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }
@@ -57,10 +57,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void saveUser(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+/*        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(1);
         Role userRole = roleRepository.findByRole("ADMIN"); //FIXME always admin
-        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));*/
         userRepository.save(user);
     }
 

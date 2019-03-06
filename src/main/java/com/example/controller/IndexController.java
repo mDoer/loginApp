@@ -1,8 +1,7 @@
 package com.example.controller;
 
-import com.example.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,24 +11,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-/**
- * The type Login controller.
- */
 @Controller
-public class LoginController {
+public class IndexController {
 
-    @Autowired
-    private UserService userService;
 
-    /**
-     * Login model and view.
-     *
-     * @return the model and view
-     */
-    @RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
-    public ModelAndView login(){
+    @PostAuthorize("hasPermission(returnObject,'INDEX_READ')")
+   // @PreAuthorize("hasPermission(#foo, 'read')")
+    @RequestMapping(value="/index",method= RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView indexView(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("login");
+        modelAndView.setViewName("/index");
         return modelAndView;
     }
+
+
 }

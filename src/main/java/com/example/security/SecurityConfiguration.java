@@ -1,5 +1,6 @@
 package com.example.security;
 
+import com.example.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -23,6 +25,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    private UserServiceImpl userDetailsService;
+
 
     @Autowired
     private DataSource dataSource;
@@ -37,15 +42,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private String privilegeQuery;
 
 
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.
-                jdbcAuthentication()
+        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+/*        auth.jdbcAuthentication()
                 .usersByUsernameQuery(usersQuery)
                 .authoritiesByUsernameQuery(privilegeQuery)
                 .dataSource(dataSource)
-                .passwordEncoder(bCryptPasswordEncoder);
+                .passwordEncoder(bCryptPasswordEncoder);*/
     }
 
     @Override
@@ -53,15 +57,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.
                 authorizeRequests()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/users/create").permitAll() //FIXME  remove before deploy
+                .antMatchers("/login").anonymous()
                 .antMatchers( "/js/**", "/css/**", "/vendor/**").permitAll()
-                .antMatchers("/home").permitAll()
+                .antMatchers("/index").authenticated()
                 .anyRequest()
                 .denyAll().and().csrf().disable().formLogin()
                 .loginPage("/login").failureUrl("/login?error=true")
-                .defaultSuccessUrl("/home",true)
-                .usernameParameter("email")
+                .defaultSuccessUrl("/index",true)
+                .usernameParameter("username")
                 .passwordParameter("password")
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
@@ -74,6 +77,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         web
                 .ignoring()
                 .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+    }
+
+    @Override
+    protected UserServiceImpl userDetailsService() {
+        return userDetailsService;
     }
 
 }

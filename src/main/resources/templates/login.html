@@ -16,12 +16,12 @@
     <form class="form-signin" th:action="@{/login}" method="POST" >
         <h2 class="form-signin-heading">Please login</h2>
 
-        <input type="text" class="form-control" id="email" name="email" th:placeholder="Email" /><br/>
+        <input type="text" class="form-control" id="username" name="username" th:placeholder="Username" /><br/>
 
         <input type="password" class="form-control"th:placeholder="Password" id="password" name="password"/><br/>
 
         <div align="center" th:if="${param.error}">
-            <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+            <p style="font-size: 20; color: #FF1C19;">Username or Password invalid, please verify</p>
         </div>
         <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login" >
         </button>
