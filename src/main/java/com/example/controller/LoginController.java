@@ -36,7 +36,14 @@ public class LoginController {
     @RequestMapping(value={"/", "/test"}, method = RequestMethod.GET)
     public ModelAndView testview(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("tables");
+        modelAndView.setViewName("test");
+        return modelAndView;
+    }
+
+    @RequestMapping(value={"/", "/test2"}, method = RequestMethod.GET)
+    public ModelAndView testview2(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("test2");
         return modelAndView;
     }
 }
