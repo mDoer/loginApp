@@ -19,17 +19,14 @@
 
 <div th:fragment="navMenu" >
 <div  class="nav-side-menu">
-    <div class="brand">Menu</div>
-
     <div class="menu-list">
-
         <ul id="menu-content" class="menu-content collapse out">
-            <li data-toggle="collapse" data-target="#usermanagement" class="collapsed active">
+            <li data-toggle="collapse" data-target="#usermanagement" class="collapsed isGranted">
                 <a href="#"><i class="fa fa-users fa-lg"></i> Benutzer <span class="arrow"></span></a>
             </li>
             <ul class="sub-menu collapse" id="usermanagement">
                 <li><a href="/users">Benutzer verwalten</a></li>
-                <li><a href="#">Rollen</a></li>
+                <li><a href="/roles">Rollen</a></li>
                 <li><a href="/logout">Logout</a></li>
             </ul>
         </ul>

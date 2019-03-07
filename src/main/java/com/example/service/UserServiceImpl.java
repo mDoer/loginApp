@@ -1,21 +1,27 @@
 package com.example.service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
+import com.example.security.model.CustomUserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.model.Role;
-import com.example.model.User;
-import com.example.repo.RoleRepository;
-import com.example.repo.UserRepository;
+import com.example.security.model.Role;
+import com.example.security.model.User;
+import com.example.security.repo.RoleRepository;
+import com.example.security.repo.UserRepository;
 
-@Service("userService")
-public class UserServiceImpl implements UserService {
+import javax.persistence.EntityNotFoundException;
+
+/**
+ * The type User service.
+ */
+@Service
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -25,16 +31,36 @@ public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public User findUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public CustomUserPrincipal loadUserByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            throw new UsernameNotFoundException(email);
+        }
+        return new CustomUserPrincipal(user);
+    }
+
+    @Override
+    public CustomUserPrincipal loadUserByID(Integer id) {
+        User user = userRepository.findById(id).orElseThrow(EntityNotFoundException::new); // FIXME enhance exception message
+        return new CustomUserPrincipal(user);
+    }
+
+
+    @Override
+    public CustomUserPrincipal loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username); //FIXME Catch exceptions when multiple times same username
+        if (user == null) {
+            throw new UsernameNotFoundException(username);
+        }
+        return new CustomUserPrincipal(user);
     }
 
     @Override
     public void saveUser(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+/*        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(1);
-        Role userRole = roleRepository.findByRole("ADMIN");
-        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        Role userRole = roleRepository.findByRole("ADMIN"); //FIXME always admin
+        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));*/
         userRepository.save(user);
     }
 
@@ -43,5 +69,4 @@ public class UserServiceImpl implements UserService {
         List<User> users = new ArrayList<>(userRepository.findAll());
         return users;
     }
-
 }

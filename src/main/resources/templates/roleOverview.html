@@ -5,20 +5,17 @@
 
     <th:block th:include="fragments/head :: head"></th:block>
 
-    <script type="text/javascript" th:src="@{/js/userTable.js}"></script>
+    <script type="text/javascript" th:src="@{/js/roleTable.js}"></script>
 
 </head>
 <body>
 <th:block th:include="fragments/header :: header"></th:block>
+
 <div id="wrapper">
     <th:block th:include="fragments/navMenu :: navMenu"></th:block>
     <div id="content" class="main-content-container">
-        <a href="/users/create" class="green button">Create</a>
-        <span style="display:block; height: 10px;"></span>
-        <div>
-            <table id="example" class="display" width="100%">
-            </table>
-        </div>
+        <table id="example" class="display" width="100%">
+        </table>
     </div>
 </div>
 </body>
