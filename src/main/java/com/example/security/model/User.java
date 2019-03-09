@@ -211,10 +211,20 @@ public class User {
         this.username = username;
     }
 
+    /**
+     * Gets is super admin.
+     *
+     * @return the is super admin
+     */
     public int getIsSuperAdmin() {
         return isSuperAdmin;
     }
 
+    /**
+     * Sets is super admin.
+     *
+     * @param isSuperAdmin the is super admin
+     */
     public void setIsSuperAdmin(int isSuperAdmin) {
         this.isSuperAdmin = isSuperAdmin;
     }

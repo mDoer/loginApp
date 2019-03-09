@@ -7,11 +7,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * The type Index controller.
+ */
 @Controller
 public class IndexController {
 
 
-  //  @PostAuthorize("hasPermission(returnObject,'INDEX_READ')")
+    /**
+     * Index view model and view.
+     *
+     * @return the model and view
+     */
+//  @PostAuthorize("hasPermission(returnObject,'INDEX_READ')")
     @RequestMapping(value="/index",method= RequestMethod.GET)
     @ResponseBody
     public ModelAndView indexView(){

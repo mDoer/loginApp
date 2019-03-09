@@ -23,9 +23,17 @@ public class Privilege {
     private String privilege;
 
 
+    /**
+     * Instantiates a new Privilege.
+     */
     public Privilege() {
     }
 
+    /**
+     * Instantiates a new Privilege.
+     *
+     * @param privilege the privilege
+     */
     public Privilege(String privilege) {
         this.privilege = privilege;
     }

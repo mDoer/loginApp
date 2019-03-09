@@ -25,6 +25,9 @@ public class RolePrivilege {
     private  int id;
 
 
+    /**
+     * Instantiates a new Role privilege.
+     */
     public RolePrivilege() {
     }
 

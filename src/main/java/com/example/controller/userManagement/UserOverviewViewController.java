@@ -7,11 +7,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * The type User overview view controller.
+ */
 @Controller
 public class UserOverviewViewController {
 
 
-    // Fixme set correct permission
+    /**
+     * User overview model and view.
+     *
+     * @return the model and view
+     */
+// Fixme set correct permission
     @PostAuthorize("hasPermission(returnObject,'USER_READ')")
     @RequestMapping(value="/users",method= RequestMethod.GET)
     @ResponseBody

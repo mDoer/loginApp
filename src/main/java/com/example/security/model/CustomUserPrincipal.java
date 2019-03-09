@@ -10,9 +10,17 @@ import java.util.Collection;
 import java.util.List;
 
 
+/**
+ * The type Custom user principal.
+ */
 public class CustomUserPrincipal implements UserDetails {
     private User user;
 
+    /**
+     * Instantiates a new Custom user principal.
+     *
+     * @param user the user
+     */
     public CustomUserPrincipal(User user) {
         this.user = user;
     }
@@ -59,6 +67,11 @@ public class CustomUserPrincipal implements UserDetails {
         return true;
     }
 
+    /**
+     * Gets user.
+     *
+     * @return the user
+     */
     public User getUser() {
         return user;
     }

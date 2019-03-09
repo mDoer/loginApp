@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The type User overview api controller.
+ */
 @RestController
 public class UserOverviewAPIController {
 
@@ -22,6 +25,11 @@ public class UserOverviewAPIController {
     @Autowired
     private ModelMapper modelMapper;
 
+    /**
+     * Gets users.
+     *
+     * @return the users
+     */
     @PostAuthorize("hasPermission(returnObject,'USER_READ')")
     @RequestMapping(value = "/users/api/getusers", method = RequestMethod.GET)
     public List<UserDTO> getUsers() {

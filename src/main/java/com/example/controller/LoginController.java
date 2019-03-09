@@ -1,15 +1,10 @@
 package com.example.controller;
 
-import com.example.service.UserService;
+import com.example.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PostAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -19,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginController {
 
     @Autowired
-    private UserService userService;
+    private CustomUserDetailsService customUserDetailsService;
 
     /**
      * Login model and view.
@@ -33,6 +28,11 @@ public class LoginController {
         return modelAndView;
     }
 
+    /**
+     * Testview model and view.
+     *
+     * @return the model and view
+     */
     @RequestMapping(value={"/", "/test"}, method = RequestMethod.GET)
     public ModelAndView testview(){
         ModelAndView modelAndView = new ModelAndView();
@@ -40,6 +40,11 @@ public class LoginController {
         return modelAndView;
     }
 
+    /**
+     * Testview 2 model and view.
+     *
+     * @return the model and view
+     */
     @RequestMapping(value={"/", "/test2"}, method = RequestMethod.GET)
     public ModelAndView testview2(){
         ModelAndView modelAndView = new ModelAndView();

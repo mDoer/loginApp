@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+
+<div button sec:authorize="hasPermission(#vars.securedObject,'USER_CREATE')" class="modal-content">
+    <div class="modal-header">
+        <div>
+            <h4 class="modal-title">Create user</h4>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" th:action="@{/users/create}" th:object="${userForm}" method="post" >
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label class="text">Username:</label>
+                </div>
+                <input type="text" class="form-control form-control-user" th:field="*{username}" id="username" placeholder="Username">
+            </div>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{username}"></span>
+
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label class="text">Name:</label>
+                </div>
+                <input type="text" class="form-control form-control-user" th:field="*{name}" id="name" placeholder="Name">
+            </div>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label class="text">Last name:</label>
+                </div>
+                <input type="text" class="form-control form-control-user" th:field="*{lastName}" id="lastName" placeholder="Last name">
+            </div>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{lastName}"></span>
+
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label class="text">Email:</label>
+                </div>
+                <input type="text" class="form-control form-control-user" th:field="*{email}" id="email" placeholder="Email">
+            </div>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{email}"></span>
+
+            <input type="submit" value="Add User">
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-warning btn-icon-split" data-dismiss="modal">Close</button>
+    </div>
+</div>

@@ -13,6 +13,9 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.util.*;
 
+/**
+ * The type Setup data.
+ */
 @Component
 public class SetupData {
 
@@ -28,6 +31,9 @@ public class SetupData {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    /**
+     * Ini.
+     */
     @PostConstruct
 
     public void ini() {

@@ -17,12 +17,16 @@ $(document).ready(function() {
   $('#userOverviewTable tbody').on('click', 'tr', function () {
           var data = userTable.row( this ).data();
 
-              $('.modal-body').load('/users',function(){
+              $('.modal-dialog').load('/users/user/' + data.id,function(){
                   $('#myModal').modal({show:true});
               });
-
-          alert( 'You clicked on '+data.name+'\'s row' );
       } );
+
+
+
+    document.getElementById("addUserButton").addEventListener("click", function() {
+          alert("User create dialog");
+      }, false);
 
 });
 

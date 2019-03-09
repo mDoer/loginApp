@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.service.UserService;
+import com.example.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class RoleController {
     @Autowired
-    private UserService userService;
+    private CustomUserDetailsService customUserDetailsService;
 
     /**
      * User list string.

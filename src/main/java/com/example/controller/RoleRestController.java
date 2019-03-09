@@ -94,6 +94,12 @@ public class RoleRestController {
     }
 
 
+    /**
+     * Update roles privileges mapping model and view.
+     *
+     * @param rolePrivilegeList the role privilege list
+     * @return the model and view
+     */
     @JsonView(Views.Public.class)
     @RequestMapping(value = "/roles/api/roleprivilegemapping", method = RequestMethod.POST)
     public ModelAndView updateRolesPrivilegesMapping(@RequestBody List<RolePrivilege> rolePrivilegeList) {
