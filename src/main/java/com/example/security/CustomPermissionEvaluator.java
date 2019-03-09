@@ -17,35 +17,24 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
 
     @Override
     public boolean hasPermission(Authentication auth, Object targetDomainObject, Object permission) {
-        if ((auth == null) || (targetDomainObject == null) || !(permission instanceof String)) {
+        //FIXME maybe find out what the target domain object is supposed to do and what to do with it?
+        if ((auth == null)  || !(permission instanceof String)) {
             return false;
         }
-        String targetType = targetDomainObject.getClass().getSimpleName().toUpperCase();
 
-        return hasPrivilege(auth, targetType, permission.toString().toUpperCase());
+        return hasPrivilege(auth, permission.toString().toUpperCase());
     }
 
     @Override
     public boolean hasPermission(Authentication auth, Serializable targetId, String targetType, Object permission) {
-        if ((auth == null) || (targetType == null) || !(permission instanceof String)) {
+        if ((auth == null) || !(permission instanceof String)) {
             return false;
         }
-        return hasPrivilege(auth, targetType.toUpperCase(),
-                permission.toString().toUpperCase());
+        return hasPrivilege(auth, permission.toString().toUpperCase());
     }
 
 
     private boolean hasPrivilege(Authentication auth, String permission) {
-        for (GrantedAuthority grantedAuth : auth.getAuthorities()) {
-            if (grantedAuth.getAuthority().contains(permission)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-    private boolean hasPrivilege(Authentication auth, String targetType, String permission) {
 
         // deny anonymous access always
         if (auth instanceof AnonymousAuthenticationToken) return false;

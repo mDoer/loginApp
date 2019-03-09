@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/layout_template}">
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/layout_template}"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Homepage</title>
 </head>
@@ -8,6 +8,14 @@
 <body>
 <section layout:fragment="content">
     <p>This is a paragraph from content page 1</p>
+    <div sec:authorize="isAuthenticated()">
+        This content is only shown to authenticated users.
+    </div>
+    <div sec:authorize="hasPermission(#vars.securedObject,'INDEX_READ')">
+        This content is only shown to permitted users.
+    </div>
+
+
 </section>
 </body>
 </html>

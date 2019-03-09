@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.security.model.User;
 import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -23,17 +25,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    /**
-     * User list string.
-     *
-     * @param model the model
-     * @return the string
-     */
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public String userList(Model model) {
-        model.addAttribute("users", userService.listAll());
-        return "userOverview";
-    }
+
 
 
     /**

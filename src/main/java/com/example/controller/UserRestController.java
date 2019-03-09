@@ -19,11 +19,11 @@ public class UserRestController {
     @Autowired
     private UserService userService;
 
-    /**
+/*    *//**
      * Gets users via ajax.
      *
      * @return the users via ajax
-     */
+     *//*
     @JsonView(Views.Public.class)
     @RequestMapping(value = "/users/api/getusers", method = RequestMethod.GET)
     public UserAjaxResponseBody getUsersViaAjax() {
@@ -31,6 +31,6 @@ public class UserRestController {
         result.setResult(userService.listAll());
         result.setMsg("");
         return result;
-    }
+    }*/
 
 }

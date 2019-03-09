@@ -12,6 +12,10 @@
 
 <body>
 
+<div sec:authorize="isAuthenticated()">
+    This content is only shown to authenticated users.
+</div>
+
 <div class="wrapper">
     <form class="form-signin" th:action="@{/login}" method="POST" >
         <h2 class="form-signin-heading">Please login</h2>

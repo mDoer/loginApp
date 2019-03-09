@@ -1,0 +1,3 @@
+table#userOverviewTable.dataTable tbody tr:hover {
+   background-color: whitesmoke !important;
+}

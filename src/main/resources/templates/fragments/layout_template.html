@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,8 +15,6 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-    <!--/* Per-page placeholder for additional links */-->
 
 </head>
 
@@ -46,8 +44,9 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="password/change">Change password</a>
-                    <a class="collapse-item" href="/users">Users</a>
-                    <a class="collapse-item" href="/roles">Roles</a>
+
+                    <a sec:authorize="hasPermission(#vars.securedObject,'USER_READ')" class="collapse-item" href="/users">Users</a>
+                    <a sec:authorize="hasPermission(#vars.securedObject,'ROLES_READ')" class="collapse-item" href="/roles">Roles</a>
                 </div>
             </div>
         </li>
@@ -122,9 +121,9 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-            <section layout:fragment="content">
-                <p>Page content goes here</p>
-            </section>
+                <th:block layout:fragment="content">
+                    <p>Page content goes here</p>
+                </th:block>
             </div>
             <!-- /.container-fluid -->
 
@@ -179,11 +178,11 @@
 <script src="js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
-<script src="vendor/chart.js/Chart.min.js"></script>
+<th:block layout:fragment="pagePlugins"></th:block>
+
 
 <!-- Page level custom scripts -->
-<script src="js/demo/chart-area-demo.js"></script>
-<script src="js/demo/chart-pie-demo.js"></script>
+<th:block layout:fragment="pageScripts"></th:block>
 
 </body>
 

@@ -1,26 +1,83 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout_template}">
 <head>
+    <title>Homepage</title>
 
-    <th:block th:include="fragments/head :: head"></th:block>
-
-    <script type="text/javascript" th:src="@{/js/userTable.js}"></script>
+    <!-- Custom styles for this page -->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/datatables.css}"/>
 
 </head>
+
 <body>
-<th:block th:include="fragments/header :: header"></th:block>
-<div id="wrapper">
-    <th:block th:include="fragments/navMenu :: navMenu"></th:block>
-    <div id="content" class="main-content-container">
-        <a href="/users/create" class="green button">Create</a>
-        <span style="display:block; height: 10px;"></span>
-        <div>
-            <table id="example" class="display" width="100%">
-            </table>
+<th:block layout:fragment="content">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more
+        information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official
+            DataTables documentation</a>.</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="userOverviewTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
-</body>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal with Dynamic Content</h4>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</th:block>
+
+<!-- Page level plugins -->
+<th:block layout:fragment="pagePlugins">
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+</th:block>
+<!-- Page level custom scripts -->
+<th:block layout:fragment="pageScripts">
+    <script src="js/userTable.js"></script>
+</th:block>
+
+
 </body>
 </html>
+
+

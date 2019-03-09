@@ -14,14 +14,21 @@ public class Privilege {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id")
+    @Column(name = "id")
     @JsonView(Views.Public.class)
     private int id;
 
-    @Column(name="privilege")
+    @Column(name = "privilege")
     @JsonView(Views.Public.class)
     private String privilege;
 
+
+    public Privilege() {
+    }
+
+    public Privilege(String privilege) {
+        this.privilege = privilege;
+    }
 
     /**
      * Gets id.

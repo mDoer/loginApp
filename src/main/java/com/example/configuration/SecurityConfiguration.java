@@ -1,5 +1,6 @@
-package com.example.security;
+package com.example.configuration;
 
+import com.example.security.CustomPermissionEvaluator;
 import com.example.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
@@ -45,11 +47,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
-/*        auth.jdbcAuthentication()
-                .usersByUsernameQuery(usersQuery)
-                .authoritiesByUsernameQuery(privilegeQuery)
-                .dataSource(dataSource)
-                .passwordEncoder(bCryptPasswordEncoder);*/
     }
 
     @Override
@@ -60,12 +57,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").anonymous()
                 .antMatchers("/test").anonymous()
                 .antMatchers("/test2").anonymous()
-                .antMatchers( "/js/**", "/css/**", "/vendor/**", "/scss/**", "/img/**").permitAll()
+                .antMatchers("/js/**", "/css/**", "/vendor/**", "/scss/**", "/img/**").permitAll()
                 .antMatchers("/index").authenticated()
+                .antMatchers("/users/**").authenticated()
                 .anyRequest()
                 .denyAll().and().csrf().disable().formLogin()
                 .loginPage("/login").failureUrl("/login?error=true")
-                .defaultSuccessUrl("/index",true)
+                .defaultSuccessUrl("/index", true)
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .and().logout()
@@ -79,6 +77,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         web
                 .ignoring()
                 .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+
+        DefaultWebSecurityExpressionHandler handler = new DefaultWebSecurityExpressionHandler();
+        handler.setPermissionEvaluator(new CustomPermissionEvaluator());
+        web.expressionHandler(handler);
     }
 
     @Override

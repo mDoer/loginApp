@@ -37,15 +37,21 @@ public class SetupData {
     }
 
     private void initPrivileges() {
-        Privilege privilege1 = new Privilege();
-        privilege1.setPrivilege("INDEX_READ");
-        privilegeRepository.save(privilege1);
-        Privilege privilege2 = new Privilege();
-        privilege2.setPrivilege("USERS_CREATE_PRIVILEGE");
-        privilegeRepository.save(privilege2);
-        Privilege privilege3 = new Privilege();
-        privilege3.setPrivilege("USERS_EDIT_PRIVILEGE");
-        privilegeRepository.save(privilege2);
+
+        List<Privilege> privilegeList = new ArrayList<>();
+
+        privilegeList.add(new Privilege("USER_READ"));
+        privilegeList.add(new Privilege("USER_EDIT"));
+        privilegeList.add(new Privilege("USER_CREATE"));
+        privilegeList.add(new Privilege("USER_DELETE"));
+
+        privilegeList.add(new Privilege("ROLES_READ"));
+        privilegeList.add(new Privilege("ROLES_EDIT"));
+        privilegeList.add(new Privilege("ROLES_CREATE"));
+        privilegeList.add(new Privilege("ROLES_DELETE"));
+
+        privilegeList.forEach(item -> this.privilegeRepository.save(item));
+
     }
 
     private void initRoles() {
