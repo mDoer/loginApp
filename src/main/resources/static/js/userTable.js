@@ -23,10 +23,19 @@ $(document).ready(function() {
       } );
 
 
+    document.getElementById("addUserButton").addEventListener("click",  function () {
+          $('.modal-dialog').load('/users/create',function(){
+          $('#modalCreateUser').modal({show:true});
+           });
+           jQuery.getScript("/userCreate.js")
+           	.done(function() {
+           		/* yay, all good, do something */
+           	})
+           	.fail(function() {
+           		/* boo, fall back to something else */
+           });
+       } );
 
-    document.getElementById("addUserButton").addEventListener("click", function() {
-          alert("User create dialog");
-      }, false);
 
 });
 

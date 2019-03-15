@@ -36,7 +36,7 @@ public class LoginController {
     @RequestMapping(value={"/", "/test"}, method = RequestMethod.GET)
     public ModelAndView testview(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("test");
+        modelAndView.setViewName("test_outer");
         return modelAndView;
     }
 
@@ -45,10 +45,10 @@ public class LoginController {
      *
      * @return the model and view
      */
-    @RequestMapping(value={"/", "/test2"}, method = RequestMethod.GET)
+    @RequestMapping(value={"/", "/test_inner"}, method = RequestMethod.GET)
     public ModelAndView testview2(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("test2");
+        modelAndView.setViewName("test_inner");
         return modelAndView;
     }
 }
